@@ -21,7 +21,7 @@
                     "appSettings": [
                         {
                             "name": "DOCKER_CUSTOM_IMAGE_NAME",
-                            "value": "prashanthmadi/azure-appservice-nginx:1.13"
+                            "value": "lepskiys/azure-appservice-nginx:latest"
                         },
                         {
                             "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
