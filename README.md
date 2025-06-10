@@ -52,3 +52,32 @@ http {
 }
 
 ```
+
+## Building and Running Locally
+
+You can build the Docker image directly from this repository and run it on your machine:
+
+```bash
+docker build -t azure-appservice-nginx .
+docker run -p 80:80 -p 2222:2222 azure-appservice-nginx
+```
+
+The container exposes port `80` for HTTP traffic and `2222` for SSH access.
+
+## Deploying with the ARM Template
+
+The provided `template.json` and `parameters.json` files allow you to deploy the image to Azure App Service using an ARM template. After creating a resource group, run the following commands:
+
+```bash
+az group create --name <resource-group> --location <location>
+az deployment group create \
+  --resource-group <resource-group> \
+  --template-file template.json \
+  --parameters @parameters.json
+```
+
+Update `parameters.json` to set a unique `siteName` before deployment.
+
+## Securing SSH Access
+
+SSH is enabled for convenience, but the default image sets the root password to `Docker!`. For production deployments you should change this password, disable root login, or configure key-based authentication by customizing `sshd_config` or extending the Dockerfile.
